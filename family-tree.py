@@ -113,6 +113,7 @@ def get_person_by_year(person_year):
 
 
 def path_selection():
+    global file_path, excel_path
     while True:
         print()
         print('Enter the path to either your EXCEL.EXE or the family-tree-data.xlsx')
@@ -121,16 +122,18 @@ def path_selection():
         raw_path = r"{}".format(new_path)
         print()
         print(f"Path: {raw_path}")
-        selected = input('[1] Set path as EXCEL.EXE \n[2] Set path as family-tree-data.xlsx? '
+        selected = input('[1] Set path for EXCEL.EXE \n[2] Set path for family-tree-data.xlsx '
                          '\n[3] Change input \n[9] Go back \nInput choice: ')
 
         if selected == '1':
             excel_path = raw_path
             print()
+            break
 
         elif selected == '2':
             file_path = raw_path
             print()
+            break
 
         elif selected == '3':
             print()
@@ -138,6 +141,8 @@ def path_selection():
         elif selected == '9':
             print()
             break
+
+
 def main():
     print('Welcome to the Singing Cadet family tree project! Here you can lookup any recorded member to see their '
           'family tree!')
@@ -186,13 +191,14 @@ def main():
         elif selected == '8':
             print('***************** Data ******************')
             while True:
-                global people, excel_path, file_path
+                global people
 
                 print('Select action:')
                 print('[1] Print table')
                 print('[2] Open Excel')
                 print('[3] Re-parse data')
                 print('[4] Edit paths')
+                print('[5] Display paths')
                 print('[9] Go back')
                 selected = input('Input choice: ')
 
@@ -202,40 +208,26 @@ def main():
                     print()
 
                 elif selected == '2':
-                    subprocess.Popen([excel_path, file_path])
-                    print('For changes to take effect you MUST close Excel AND then re-parse the data')
-                    print()
+                    try:
+                        subprocess.Popen([excel_path, file_path])
+                        print('For changes to take effect you MUST close Excel AND then re-parse the data')
+                        print()
+                    except Exception:
+                        print('Error, verify correct paths')
+                        print()
 
                 elif selected == '3':
                     people = read_excel_data('family-tree-data.xlsx')
                     print()
 
                 elif selected == '4':
-                    while True:
-                        print()
-                        print('Enter the path to either your EXCEL.EXE or the family-tree-data.xlsx')
-                        print('You will select which path it is in the next step')
-                        new_path = input('Enter path: ')
-                        raw_path = r"{}".format(new_path)
-                        print()
-                        print(f"Path: {raw_path}")
-                        selected = input('[1] Set path as EXCEL.EXE \n[2] Set path as family-tree-data.xlsx? '
-                                         '\n[3] Change input \n[9] Go back \nInput choice: ')
+                    path_selection()
 
-                        if selected == '1':
-                            excel_path = raw_path
-                            print()
-
-                        elif selected == '2':
-                            file_path = raw_path
-                            print()
-
-                        elif selected == '3':
-                            print()
-
-                        elif selected == '9':
-                            print()
-                            break
+                elif selected == '5':
+                    print()
+                    print(f'Path to EXCEL.EXE: {excel_path}')
+                    print(f'Path to family-tree-data.xlsx: {file_path:}')
+                    print()
 
                 elif selected == '9':
                     print('*****************************************')
