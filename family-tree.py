@@ -1,4 +1,5 @@
 import openpyxl
+import subprocess
 
 
 class Person:
@@ -156,6 +157,7 @@ def main():
             while True:
                 print('Select action')
                 print('[1] Print table')
+                print('[2] Open Excel')
                 print('[9] Go back')
                 selected = input('Input choice: ')
 
@@ -163,6 +165,9 @@ def main():
                     print()
                     print_table()
                     print()
+
+                elif selected == '2':
+                    subprocess.run(['start', 'excel.exe', 'C:\\Users\\ASHil\\PycharmProjects\\Family-Tree\\family-tree-data.xlsx'])
 
                 elif selected == '9':
                     print('*****************************************')
