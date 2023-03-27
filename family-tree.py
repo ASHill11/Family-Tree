@@ -142,6 +142,7 @@ def path_selection():
             print()
             break
 
+
 def data():
     print('***************** Data ******************')
     while True:
@@ -223,6 +224,8 @@ def search():
 
         else:
             print()
+
+
 def main():
     print('Welcome to the Singing Cadet family tree project! Here you can lookup any recorded member to see their '
           'family tree!')
