@@ -237,7 +237,7 @@ def main():
         print()
 
         if selected == '1':
-
+            search()
 
         elif selected == '8':
             data()
