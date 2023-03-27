@@ -61,6 +61,11 @@ def read_excel_data(filename):
 people = read_excel_data('family-tree-data.xlsx')
 
 
+def print_table():
+    for person in people:
+        print(f"ID: {person.parse_id}, Name: {person.first_name} {person.last_name} Class of {person.class_year}")
+
+
 def get_person_by_id(person_id):
     person_id = int(person_id)
     for person in people:
@@ -86,6 +91,18 @@ def get_person_by_last(person_last):
     return people_list
 
 
+def get_person_by_year(person_year):
+    people_list = []
+    for person in people:
+        if person.class_year == person_year:
+            print(f"{person.first_name} {person.last_name}")
+            people_list.append(person)
+
+    if not people_list:
+        print(f"No people found with class of {person_year}")
+
+    return people_list
+
 def main():
     print('Welcome to the Singing Cadet family tree project! Here you can lookup any recorded member to see their '
           'family tree!')
@@ -94,6 +111,7 @@ def main():
     while True:
         print('*************** Main Menu ***************')
         print('[1] Search')
+        print('[8] Data')
         print('[9] Exit')
         selected = input('Input choice: ')
         print()
@@ -103,8 +121,10 @@ def main():
                 print('Select search criterion')
                 print('[1] ID')
                 print('[2] Last name')
-                print('[3] Go back')
+                print('[3] Class year')
+                print('[4] Go back')
                 selected = input('Input choice: ')
+
                 if selected == '1':
                     print()
                     get_person_by_id(input('Enter ID: '))
@@ -115,9 +135,24 @@ def main():
                     print()
 
                 elif selected == '3':
+                    print()
+                    get_person_by_year(input('Enter class year'))
+                    print()
+
+                elif selected == '4':
                     print('*****************************************')
                     print()
                     break
+        elif selected == '8':
+            print('***************** Data ******************')
+            while True:
+                print('Select action')
+                print('[1] Print table')
+                selected = input('Input choice: ')
+                if selected == '1':
+                    print()
+                    print_table()
+                    print()
 
         elif selected == '9':
             exit()
