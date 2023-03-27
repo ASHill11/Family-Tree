@@ -111,6 +111,33 @@ def get_person_by_year(person_year):
 
     return people_list
 
+
+def path_selection():
+    while True:
+        print()
+        print('Enter the path to either your EXCEL.EXE or the family-tree-data.xlsx')
+        print('You will select which path it is in the next step')
+        new_path = input('Enter path: ')
+        raw_path = r"{}".format(new_path)
+        print()
+        print(f"Path: {raw_path}")
+        selected = input('[1] Set path as EXCEL.EXE \n[2] Set path as family-tree-data.xlsx? '
+                         '\n[3] Change input \n[9] Go back \nInput choice: ')
+
+        if selected == '1':
+            excel_path = raw_path
+            print()
+
+        elif selected == '2':
+            file_path = raw_path
+            print()
+
+        elif selected == '3':
+            print()
+
+        elif selected == '9':
+            print()
+            break
 def main():
     print('Welcome to the Singing Cadet family tree project! Here you can lookup any recorded member to see their '
           'family tree!')
@@ -185,14 +212,15 @@ def main():
 
                 elif selected == '4':
                     while True:
+                        print()
                         print('Enter the path to either your EXCEL.EXE or the family-tree-data.xlsx')
                         print('You will select which path it is in the next step')
                         new_path = input('Enter path: ')
                         raw_path = r"{}".format(new_path)
                         print()
-                        print(raw_path)
-                        selected = input('[1] Set path as EXCEL.EXE [1] \n [2] Set path as family-tree-data.xlsx [2]? '
-                                         '\n [3] Go back')
+                        print(f"Path: {raw_path}")
+                        selected = input('[1] Set path as EXCEL.EXE \n[2] Set path as family-tree-data.xlsx? '
+                                         '\n[3] Change input \n[9] Go back \nInput choice: ')
 
                         if selected == '1':
                             excel_path = raw_path
@@ -203,6 +231,9 @@ def main():
                             print()
 
                         elif selected == '3':
+                            print()
+
+                        elif selected == '9':
                             print()
                             break
 
