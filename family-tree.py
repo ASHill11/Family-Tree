@@ -65,12 +65,21 @@ def get_person_by_id(person_id):
     person_id = int(person_id)
     for person in people:
         if person.parse_id == person_id:
-            print(person.last_name)
+            print(person.first_name, person.last_name)
             return person
     print("No person found with ID:", person_id)
     print()
     return None
 
+
+def get_person_by_last(person_last):
+    for person in people:
+        if person.last_name == person_last:
+            print(person.parse_id)
+            return person
+    print("No person found with last name:", person_last)
+    print()
+    return None
 
 
 def main():
@@ -78,8 +87,26 @@ def main():
         print('[1] Search')
         print('[9] Exit')
         selected = input('Input choice: ')
+        print()
         if selected == '1':
-            get_person_by_id(input('Enter ID: '))
+            while True:
+                print('Select search criterion')
+                print('[1] ID')
+                print('[2] Last name')
+                print('[3] Go back')
+                selected = input('Input choice: ')
+                if selected == '1':
+                    get_person_by_id(input('Enter ID: '))
+                    print()
+                    break
+                elif selected == '2':
+                    get_person_by_last(input('Enter last name: '))
+                    print()
+                    break
+                elif selected == '3':
+                    print()
+                    break
+                print()
         elif selected == '9':
             exit()
 
