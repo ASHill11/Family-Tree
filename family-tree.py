@@ -1,13 +1,17 @@
 from anytree import Node, RenderTree
 
-# Define the family members
-grandpa = Node("Grandpa")
-dad = Node("Dad", parent=grandpa)
-uncle = Node("Uncle", parent=grandpa)
-child1 = Node("Child 1", parent=dad)
-child2 = Node("Child 2", parent=dad)
-child3 = Node("Child 3", parent=uncle)
+def build_tree(data, parent=None):
+    """Recursively build a tree from a nested list."""
+    for item in data:
+        if isinstance(item, list):
+            node = Node('', parent=parent)
+            build_tree(item, parent=node)
+        else:
+            node = Node(item, parent=parent)
 
-# Print the family tree
-for pre, _, node in RenderTree(grandpa):
+# Example usage:
+data = ['Grandpa', ['Dad', ['Child 1', 'Child 2']], ['Uncle', ['Child 3']]]
+root = Node('My Family Tree')
+build_tree(data, parent=root)
+for pre, _, node in RenderTree(root):
     print(f"{pre}{node.name}")
