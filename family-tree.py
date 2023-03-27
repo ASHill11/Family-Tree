@@ -66,6 +66,7 @@ def get_person_by_id(person_id):
     for person in people:
         if person.parse_id == person_id:
             print(person.first_name, person.last_name)
+            print()
             return person
     print("No person found with ID:", person_id)
     print()
@@ -75,7 +76,8 @@ def get_person_by_id(person_id):
 def get_person_by_last(person_last):
     for person in people:
         if person.last_name == person_last:
-            print(person.parse_id)
+            print(f"Parse ID: {person.parse_id}")
+            print()
             return person
     print("No person found with last name:", person_last)
     print()
@@ -83,6 +85,10 @@ def get_person_by_last(person_last):
 
 
 def main():
+    print('Welcome to the Singing Cadet family tree project! Here you can lookup any recorded member to see their '
+          'family tree!')
+    print('Github Repo: https://github.com/ASHill11/Family-Tree')
+    print()
     while True:
         print('[1] Search')
         print('[9] Exit')
@@ -95,13 +101,12 @@ def main():
                 print('[2] Last name')
                 print('[3] Go back')
                 selected = input('Input choice: ')
+                print()
                 if selected == '1':
                     get_person_by_id(input('Enter ID: '))
-                    print()
                     break
                 elif selected == '2':
                     get_person_by_last(input('Enter last name: '))
-                    print()
                     break
                 elif selected == '3':
                     print()
