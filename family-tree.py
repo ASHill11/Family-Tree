@@ -18,13 +18,44 @@ class Person:
 
 
 def read_excel_data(filename):
-    wb = openpyxl.load_workbook(filename)
-    sheet = wb.active
-    data = []
-    for row in sheet.iter_rows(min_row=2, values_only=True):
-        person = Person(*row)
-        data.append(person)
-    return data
+    """
+    Reads data from an Excel file and returns a list of Person objects
+    """
+    # Load the workbook and select the first worksheet
+    workbook = openpyxl.load_workbook(filename)
+    worksheet = workbook.active
+
+    # Initialize a list to hold the Person objects
+    people_list = []
+
+    # Loop through each row in the worksheet until an empty row is reached
+    row_num = 2  # start at row 2 to skip the header row
+    while worksheet.cell(row=row_num, column=1).value is not None:
+        # Get the data from the row and create a Person object
+        id_num = worksheet.cell(row=row_num, column=1).value
+        first_name = worksheet.cell(row=row_num, column=2).value
+        last_name = worksheet.cell(row=row_num, column=3).value
+        class_year = worksheet.cell(row=row_num, column=4).value
+        parent_1 = worksheet.cell(row=row_num, column=5).value
+        parent_2 = worksheet.cell(row=row_num, column=6).value
+        parent_3 = worksheet.cell(row=row_num, column=7).value
+        child_1 = worksheet.cell(row=row_num, column=8).value
+        child_2 = worksheet.cell(row=row_num, column=9).value
+        child_3 = worksheet.cell(row=row_num, column=10).value
+        child_4 = worksheet.cell(row=row_num, column=11).value
+        child_5 = worksheet.cell(row=row_num, column=12).value
+        person = Person(id_num, first_name, last_name, class_year, parent_1, parent_2, parent_3, child_1, child_2,
+                        child_3, child_4, child_5)
+
+        # Add the Person object to the list
+        people_list.append(person)
+
+        # Move to the next row
+        row_num += 1
+
+    # Close the workbook and return the list of Person objects
+    workbook.close()
+    return people_list
 
 
 people = read_excel_data('family-tree-data.xlsx')
