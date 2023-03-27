@@ -61,13 +61,16 @@ def read_excel_data(filename):
 people = read_excel_data('family-tree-data.xlsx')
 
 
-def get_person_by_id(search_id):
+def get_person_by_id(person_id):
+    person_id = int(person_id)
     for person in people:
-        print(person.parse_id, search_id)
-        if person.parse_id == search_id:
+        if person.parse_id == person_id:
+            print(person.last_name)
             return person
-    print("No person found with ID:", search_id)
+    print("No person found with ID:", person_id)
+    print()
     return None
+
 
 
 def main():
