@@ -2,16 +2,21 @@
 from anytree import Node, RenderTree
 
 
-def build_tree(data, parent=None, parent_name='root'):
+def build_tree(data, parent=None):
     """Recursively build a tree from a nested list."""
+    node_dict = {}
     for item in data:
         if isinstance(item, list):
-            node = Node(str(item[0]), parent=parent)
-            build_tree(item, parent=node, parent_name=str(item[0]))
+            child_key = str(item)
+            if child_key not in node_dict:
+                node = Node('', parent=parent)
+                node_dict[child_key] = node
+                build_tree(item, parent=node)
         else:
-            node = Node(str(item), parent=parent)
-        if parent_name and node.parent:
-            node.parent.name = parent_name
+            child_key = str(item)
+            if child_key not in node_dict:
+                node = Node(child_key, parent=parent)
+                node_dict[child_key] = node
 
 
 def print_tree(tree):
