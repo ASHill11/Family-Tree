@@ -2,12 +2,18 @@ from anytree import Node, RenderTree
 
 def build_tree(data, parent=None):
     """Recursively build a tree from a nested list."""
-    for item in data:
+    for i, item in enumerate(data):
         if isinstance(item, list):
-            node = Node(item[0], parent=parent)
-            build_tree(item[1:], parent=node)
+            if parent is None:
+                node = Node("")
+            else:
+                node = Node("", parent=parent)
+            build_tree(item, parent=node)
         else:
-            node = Node(item, parent=parent)
+            if i == 0:
+                parent.name = item
+            else:
+                node = Node(item, parent=parent)
 
 # Example usage:
 data = ['Grandpa', ['Dad', ['Child 1', 'Child 2']], ['Uncle', ['Child 3']]]
