@@ -190,6 +190,39 @@ def data():
 
         else:
             print()
+
+
+def search():
+    print('**************** Search *****************')
+    while True:
+        print('Select search criterion:')
+        print('[1] ID')
+        print('[2] Last name')
+        print('[3] Class year')
+        print('[9] Go back')
+        selected = input('Input choice: ')
+
+        if selected == '1':
+            print()
+            get_person_by_id(input('Enter ID: '))
+
+        elif selected == '2':
+            print()
+            get_person_by_last(input('Enter last name: '))
+            print()
+
+        elif selected == '3':
+            print()
+            get_person_by_year(input('Enter class year: '))
+            print()
+
+        elif selected == '9':
+            print('*****************************************')
+            print()
+            break
+
+        else:
+            print()
 def main():
     print('Welcome to the Singing Cadet family tree project! Here you can lookup any recorded member to see their '
           'family tree!')
@@ -204,36 +237,7 @@ def main():
         print()
 
         if selected == '1':
-            print('**************** Search *****************')
-            while True:
-                print('Select search criterion:')
-                print('[1] ID')
-                print('[2] Last name')
-                print('[3] Class year')
-                print('[9] Go back')
-                selected = input('Input choice: ')
 
-                if selected == '1':
-                    print()
-                    get_person_by_id(input('Enter ID: '))
-
-                elif selected == '2':
-                    print()
-                    get_person_by_last(input('Enter last name: '))
-                    print()
-
-                elif selected == '3':
-                    print()
-                    get_person_by_year(input('Enter class year: '))
-                    print()
-
-                elif selected == '9':
-                    print('*****************************************')
-                    print()
-                    break
-
-                else:
-                    print()
 
         elif selected == '8':
             data()
