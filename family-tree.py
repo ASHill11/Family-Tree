@@ -74,14 +74,17 @@ def get_person_by_id(person_id):
 
 
 def get_person_by_last(person_last):
+    people_list = []
     for person in people:
         if person.last_name == person_last:
             print(f"Parse ID: {person.parse_id}")
-            print()
-            return person
-    print("No person found with last name:", person_last)
-    print()
-    return None
+            people_list.append(person)
+
+    if not people_list:
+        print("No people found with last name:", person_last)
+        print()
+    return people_list
+
 
 
 def main():
@@ -107,6 +110,7 @@ def main():
                     break
                 elif selected == '2':
                     get_person_by_last(input('Enter last name: '))
+                    print()
                     break
                 elif selected == '3':
                     print()
