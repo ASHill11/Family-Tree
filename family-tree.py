@@ -77,14 +77,13 @@ def get_person_by_last(person_last):
     people_list = []
     for person in people:
         if person.last_name == person_last:
-            print(f"Parse ID: {person.parse_id}")
+            print(f"Parse ID for {person.first_name} {person.last_name}: {person.parse_id}")
             people_list.append(person)
 
     if not people_list:
         print("No people found with last name:", person_last)
-        print()
-    return people_list
 
+    return people_list
 
 
 def main():
@@ -93,29 +92,33 @@ def main():
     print('Github Repo: https://github.com/ASHill11/Family-Tree')
     print()
     while True:
+        print('*************** Main Menu ***************')
         print('[1] Search')
         print('[9] Exit')
         selected = input('Input choice: ')
         print()
         if selected == '1':
+            print('**************** Search *****************')
             while True:
                 print('Select search criterion')
                 print('[1] ID')
                 print('[2] Last name')
                 print('[3] Go back')
                 selected = input('Input choice: ')
-                print()
                 if selected == '1':
+                    print()
                     get_person_by_id(input('Enter ID: '))
-                    break
+
                 elif selected == '2':
+                    print()
                     get_person_by_last(input('Enter last name: '))
                     print()
-                    break
+
                 elif selected == '3':
+                    print('*****************************************')
                     print()
                     break
-                print()
+
         elif selected == '9':
             exit()
 
