@@ -59,6 +59,17 @@ def read_excel_data(filename):
 
 
 people = read_excel_data('family-tree-data.xlsx')
-for person in people:
-    print(f"ID: {person.parse_id}, Name: {person.first_name} {person.last_name} Class Year: {person.class_year}")
 
+
+def main():
+    while True:
+        print('[1] Search ')
+        print('[9] Exit')
+        selected = input('Input choice')
+        if selected == '1':
+
+        elif selected == '9':
+            exit()
+
+
+main()
