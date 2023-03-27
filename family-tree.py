@@ -33,6 +33,7 @@ def read_excel_data(filename):
     while worksheet.cell(row=row_num, column=1).value is not None:
         # Get the data from the row and create a Person object
         id_num = worksheet.cell(row=row_num, column=1).value
+        id_num.zfill(4)
         first_name = worksheet.cell(row=row_num, column=2).value
         last_name = worksheet.cell(row=row_num, column=3).value
         class_year = worksheet.cell(row=row_num, column=4).value
@@ -93,6 +94,7 @@ def get_person_by_last(person_last):
 
 def get_person_by_year(person_year):
     people_list = []
+    person_year = int(person_year)
     for person in people:
         if person.class_year == person_year:
             print(f"{person.first_name} {person.last_name}")
@@ -115,6 +117,7 @@ def main():
         print('[9] Exit')
         selected = input('Input choice: ')
         print()
+
         if selected == '1':
             print('**************** Search *****************')
             while True:
@@ -122,7 +125,7 @@ def main():
                 print('[1] ID')
                 print('[2] Last name')
                 print('[3] Class year')
-                print('[4] Go back')
+                print('[9] Go back')
                 selected = input('Input choice: ')
 
                 if selected == '1':
@@ -136,22 +139,36 @@ def main():
 
                 elif selected == '3':
                     print()
-                    get_person_by_year(input('Enter class year'))
+                    get_person_by_year(input('Enter class year: '))
                     print()
 
-                elif selected == '4':
+                elif selected == '9':
                     print('*****************************************')
                     print()
                     break
+
+                else:
+                    print()
+
         elif selected == '8':
             print('***************** Data ******************')
             while True:
                 print('Select action')
                 print('[1] Print table')
+                print('[9] Go back')
                 selected = input('Input choice: ')
+
                 if selected == '1':
                     print()
                     print_table()
+                    print()
+
+                elif selected == '9':
+                    print('*****************************************')
+                    print()
+                    break
+
+                else:
                     print()
 
         elif selected == '9':
