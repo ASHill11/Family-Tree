@@ -64,7 +64,8 @@ people = read_excel_data('family-tree-data.xlsx')
 
 def print_table():
     for person in people:
-        print(f"ID: {person.parse_id}, Name: {person.first_name} {person.last_name} Class of {person.class_year}")
+        print((f"{'ID:'} {person.parse_id} \t {'Name:'} {person.first_name} {person.last_name} \t "
+              f"{'Class of '}{person.class_year}").expandtabs(15))
 
 
 def get_person_by_id(person_id):
