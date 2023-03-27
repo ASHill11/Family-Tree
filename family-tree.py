@@ -4,11 +4,8 @@ def build_tree(data, parent=None):
     """Recursively build a tree from a nested list."""
     for item in data:
         if isinstance(item, list):
-            if isinstance(item[0], str):
-                node = Node(item[0], parent=parent)
-                build_tree(item[1:], parent=node)
-            else:
-                build_tree(item, parent=parent)
+            node = Node(item[0], parent=parent)
+            build_tree(item[1:], parent=node)
         else:
             node = Node(item, parent=parent)
 
