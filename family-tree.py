@@ -142,7 +142,54 @@ def path_selection():
             print()
             break
 
+def data():
+    print('***************** Data ******************')
+    while True:
+        global people
 
+        print('Select action:')
+        print('[1] Print table')
+        print('[2] Open Excel')
+        print('[3] Re-parse data')
+        print('[4] Edit paths')
+        print('[5] Display paths')
+        print('[9] Go back')
+        selected = input('Input choice: ')
+
+        if selected == '1':
+            print()
+            print_table()
+            print()
+
+        elif selected == '2':
+            try:
+                subprocess.Popen([excel_path, file_path])
+                print('For changes to take effect you MUST close Excel AND then re-parse the data')
+                print()
+            except Exception:
+                print('Error, verify correct paths')
+                print()
+
+        elif selected == '3':
+            people = read_excel_data('family-tree-data.xlsx')
+            print()
+
+        elif selected == '4':
+            path_selection()
+
+        elif selected == '5':
+            print()
+            print(f'Path to EXCEL.EXE: {excel_path}')
+            print(f'Path to family-tree-data.xlsx: {file_path:}')
+            print()
+
+        elif selected == '9':
+            print('*****************************************')
+            print()
+            break
+
+        else:
+            print()
 def main():
     print('Welcome to the Singing Cadet family tree project! Here you can lookup any recorded member to see their '
           'family tree!')
@@ -189,53 +236,7 @@ def main():
                     print()
 
         elif selected == '8':
-            print('***************** Data ******************')
-            while True:
-                global people
-
-                print('Select action:')
-                print('[1] Print table')
-                print('[2] Open Excel')
-                print('[3] Re-parse data')
-                print('[4] Edit paths')
-                print('[5] Display paths')
-                print('[9] Go back')
-                selected = input('Input choice: ')
-
-                if selected == '1':
-                    print()
-                    print_table()
-                    print()
-
-                elif selected == '2':
-                    try:
-                        subprocess.Popen([excel_path, file_path])
-                        print('For changes to take effect you MUST close Excel AND then re-parse the data')
-                        print()
-                    except Exception:
-                        print('Error, verify correct paths')
-                        print()
-
-                elif selected == '3':
-                    people = read_excel_data('family-tree-data.xlsx')
-                    print()
-
-                elif selected == '4':
-                    path_selection()
-
-                elif selected == '5':
-                    print()
-                    print(f'Path to EXCEL.EXE: {excel_path}')
-                    print(f'Path to family-tree-data.xlsx: {file_path:}')
-                    print()
-
-                elif selected == '9':
-                    print('*****************************************')
-                    print()
-                    break
-
-                else:
-                    print()
+            data()
 
         elif selected == '9':
             exit()
