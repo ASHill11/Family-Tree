@@ -61,23 +61,13 @@ def read_excel_data(filename):
 people = read_excel_data('family-tree-data.xlsx')
 
 
-def print_person_attributes(person_id):
+def get_person_by_id(search_id):
     for person in people:
-        if person.parse_id == person_id:
-            print(f"ID: {person.parse_id}")
-            print(f"First Name: {person.first_name}")
-            print(f"Last Name: {person.last_name}")
-            print(f"Class Year: {person.class_year}")
-            print(f"Parent 1: {person.parent_1}")
-            print(f"Parent 2: {person.parent_2}")
-            print(f"Parent 3: {person.parent_3}")
-            print(f"Child 1: {person.child_1}")
-            print(f"Child 2: {person.child_2}")
-            print(f"Child 3: {person.child_3}")
-            print(f"Child 4: {person.child_4}")
-            print(f"Child 5: {person.child_5}")
-            return
-    print(f"No person found with ID {person_id}")
+        print(person.parse_id, search_id)
+        if person.parse_id == search_id:
+            return person
+    print("No person found with ID:", search_id)
+    return None
 
 
 def main():
@@ -86,7 +76,7 @@ def main():
         print('[9] Exit')
         selected = input('Input choice: ')
         if selected == '1':
-            print_person_attributes(input('Enter ID: '))
+            get_person_by_id(input('Enter ID: '))
         elif selected == '9':
             exit()
 
