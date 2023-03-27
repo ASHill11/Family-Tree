@@ -1,34 +1,14 @@
 class Person:
-    def __init__(self, name, parent=None):
-        self.name = name
-        self.parent = parent
-        self.children = []
-
-    def add_child(self, child):
-        self.children.append(child)
-
-    def __repr__(self):
-        return f"{self.name}"
-
-
-def build_family_tree():
-    # create the root of the tree
-    grandparent = Person("Grandparent")
-    # create the parents and add them as children of the grandparent
-    parent1 = Person("Parent 1", grandparent)
-    parent2 = Person("Parent 2", grandparent)
-    grandparent.add_child(parent1)
-    grandparent.add_child(parent2)
-    # create the children and add them as children of the parents
-    child1 = Person("Child 1", parent1)
-    child2 = Person("Child 2", parent1)
-    child3 = Person("Child 3", parent2)
-    child4 = Person("Child 4", parent2)
-    child5 = Person("Child 5", parent2)
-    parent1.add_child(child1)
-    parent1.add_child(child2)
-    parent2.add_child(child3)
-    parent2.add_child(child4)
-    parent2.add_child(child5)
-    # return the grandparent, which is the root of the tree
-    return grandparent
+    def __init__(self, parse_id, first_name, last_name, class_year, parent_1=None, parent_2=None, parent_3=None, child_1=None, child_2=None, child_3=None, child_4=None, child_5=None):
+        self.parse_id = parse_id
+        self.first_name = first_name
+        self.last_name = last_name
+        self.class_year = class_year
+        self.parent_1 = parent_1
+        self.parent_2 = parent_2
+        self.parent_3 = parent_3
+        self.child_1 = child_1
+        self.child_2 = child_2
+        self.child_3 = child_3
+        self.child_4 = child_4
+        self.child_5 = child_5
