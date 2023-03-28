@@ -254,11 +254,12 @@ def search():
             print()
 
 
-def show_children(parse_id):
-    subject = int(parse_id)
+def show_children():
+    subject = int(input('Enter person ID: '))
+    print()
     subject = person_id_dict[subject]
 
-    print(f'Subject is: {subject.first_name}')
+    print(f'{subject.first_name}\'s buffo:')
     if subject.child_1:
         print(person_name_dict[subject.child_1])
     if subject.child_2:
@@ -269,7 +270,6 @@ def show_children(parse_id):
         print(person_name_dict[subject.child_4])
     if subject.child_5:
         print(person_name_dict[subject.child_5])
-    print(f'Children are:')
 
 
 def main():
@@ -290,7 +290,8 @@ def main():
             search()
 
         elif selected == '2':
-            show_children(int(input('Enter person ID')))
+            show_children()
+            print()
 
         elif selected == '8':
             data()
