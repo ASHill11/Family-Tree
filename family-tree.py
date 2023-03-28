@@ -259,7 +259,6 @@ def show_children(parse_id):
     subject = person_id_dict[subject]
 
     print(f'Subject is: {subject.first_name}')
-    print(f'Children are:')
     if subject.child_1:
         print(person_name_dict[subject.child_1])
     if subject.child_2:
@@ -270,6 +269,7 @@ def show_children(parse_id):
         print(person_name_dict[subject.child_4])
     if subject.child_5:
         print(person_name_dict[subject.child_5])
+    print(f'Children are:')
 
 
 def main():
