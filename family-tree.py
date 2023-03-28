@@ -76,6 +76,14 @@ def create_name_dict():
 
 
 id_name_dict = create_name_dict()
+print(id_name_dict)
+
+
+def show_kids(person):
+    kids = [person.child_1, person.child_2, person.child_3, person.child_4, person.child_5]
+    for child in kids:
+        print(child)
+
 
 def print_table():
     for person in people:
@@ -244,6 +252,7 @@ def main():
     while True:
         print('*************** Main Menu ***************')
         print('[1] Search')
+        print('[2] Relationships')
         print('[8] Data')
         print('[9] Exit')
         selected = input('Input choice: ')
@@ -251,6 +260,10 @@ def main():
 
         if selected == '1':
             search()
+
+        elif selected == '2':
+            subject = input('Input ')
+
 
         elif selected == '8':
             data()
