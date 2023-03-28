@@ -75,8 +75,18 @@ def create_name_dict():
     return name_dict
 
 
-id_name_dict = create_name_dict()
-print(id_name_dict)
+person_name_dict = create_name_dict()
+
+
+def create_person_id_dict():
+    id_person_dict = {}
+    for person in people:
+        id_person_dict[person.parse_id] = person
+    return id_person_dict
+
+
+person_id_dict = create_person_id_dict()
+print(person_id_dict)
 
 
 def show_kids(person):
@@ -244,6 +254,24 @@ def search():
             print()
 
 
+def show_children(parse_id):
+    subject = int(parse_id)
+    subject = person_id_dict[subject]
+
+    print(f'Subject is: {subject.first_name}')
+    print(f'Children are:')
+    if subject.child_1:
+        print(person_name_dict[subject.child_1])
+    if subject.child_2:
+        print(person_name_dict[subject.child_2])
+    if subject.child_3:
+        print(person_name_dict[subject.child_3])
+    if subject.child_4:
+        print(person_name_dict[subject.child_4])
+    if subject.child_5:
+        print(person_name_dict[subject.child_5])
+
+
 def main():
     print('Welcome to the Singing Cadet family tree project! Here you can lookup any recorded member to see their '
           'family tree!')
@@ -262,8 +290,7 @@ def main():
             search()
 
         elif selected == '2':
-            subject = input('Input ')
-
+            show_children(int(input('Enter person ID')))
 
         elif selected == '8':
             data()
