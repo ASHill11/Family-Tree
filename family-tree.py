@@ -67,6 +67,16 @@ def read_excel_data(filename):
 people = read_excel_data('family-tree-data.xlsx')
 
 
+def create_name_dict():
+    name_dict = {}
+    for person in people:
+        full_name = person.first_name + ' ' + person.last_name
+        name_dict[person.parse_id] = full_name
+    return name_dict
+
+
+id_name_dict = create_name_dict()
+
 def print_table():
     for person in people:
         print((f"{'ID:'} {person.parse_id} \t {'Name:'} {person.first_name} {person.last_name} \t "
