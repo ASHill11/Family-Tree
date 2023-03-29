@@ -318,8 +318,6 @@ def main():
 
         elif selected == '7':
             data_menu()
-            show_relationships()
-            print()
 
         elif selected == '8':
             credits_menu()
