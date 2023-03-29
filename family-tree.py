@@ -289,7 +289,7 @@ def show_immediate():
     print()
     subject = person_id_dict[subject]
 
-    print(f'{subject.first_name}\'s buffo:')
+    print(f'{subject.first_name} {subject.last_name}\'s buffo:')
     if subject.child_1:
         print(person_name_dict[subject.child_1])
     if subject.child_2:
@@ -300,6 +300,16 @@ def show_immediate():
         print(person_name_dict[subject.child_4])
     if subject.child_5:
         print(person_name_dict[subject.child_5])
+
+    print()
+    print(f'{subject.first_name} {subject.last_name}\'s Old Men:')
+    if subject.parent_1:
+        print(person_name_dict[subject.parent_1])
+    if subject.parent_2:
+        print(person_name_dict[subject.parent_2])
+    if subject.parent_3:
+        print(person_name_dict[subject.parent_3])
+    print()
 
 
 def main():
