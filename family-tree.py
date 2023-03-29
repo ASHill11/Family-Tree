@@ -329,15 +329,15 @@ def show_ancestors():
                 thisLine += ","
         print(thisLine)
 
+
 def show_descendants():
+    print()
     subject = int(input('Enter person ID: '))
     maxDepth = input('How many generations of descendants? ')
     print()
 
     subject = person_id_dict[subject]
     future_nodes = [(subject, 0)]
-    depth = 0
-
     names = []
 
     while len(future_nodes) > 0:
@@ -354,13 +354,15 @@ def show_descendants():
 
         # break if max depth reached
         if maxDepth:
-            if depth > int(maxDepth): break
+            if depth > int(maxDepth):
+                break
 
         # add person's descendants
         for child in this_person.children:
             if (child, depth + 1) not in future_nodes:
                 future_nodes.append((person_id_dict[child], depth + 1))
-    
+
+    print('*****************************************')
     for index, generation in enumerate(names):
         thisLine = "Generation " + str(index) + ":"
         for index2, name in enumerate(generation):
@@ -368,6 +370,9 @@ def show_descendants():
             if index2 < len(generation) - 1:
                 thisLine += ","
         print(thisLine)
+    print('*****************************************')
+    print()
+
 
 def show_relationships():
     print()
