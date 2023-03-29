@@ -297,10 +297,10 @@ def main():
             data_menu()
 
         elif selected == '8':
-            print('Historians: Tanner Hansard \'23 and Chris Huser \'22')
-            print('Traditions Chairs: Owen Dunston \'23, Aidan Hill \'23, and Liam Stevens \'23')
-            print('Vice President: Miles Baker \'23')
-            print('Comp Sci Major: Joshua Wood \'23')
+            print('Historians: \t Tanner Hansard \'23 and Chris Huser \'22'.expandtabs(10))
+            print('Traditions Chairs: \t Owen Dunston \'23, Aidan Hill \'23, and Liam Stevens \'23'.expandtabs(10))
+            print('Vice President: \t Miles Baker \'23'.expandtabs(10))
+            print('Comp Sci Major: \t Joshua Wood \'23'.expandtabs(10))
 
         elif selected == '9':
             exit()
