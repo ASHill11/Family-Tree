@@ -285,16 +285,16 @@ def credits_menu():
     print('*****************************************')
     print()
 
+
 def show_ancestors():
+    print()
     subject = int(input('Enter person ID: '))
-    maxDepth = input('How many generations of descendants? ')
+    maxDepth = input('How many generations of ancestors? ')
     print()
 
     subject = person_id_dict[subject]
     future_nodes = [(subject, 0)]
-    depth = 0
     totalDepth = 0
-
     names = []
 
     while len(future_nodes) > 0:
@@ -320,7 +320,8 @@ def show_ancestors():
         for parent in this_person.parents:
             if (parent, depth + 1) not in future_nodes:
                 future_nodes.append((person_id_dict[parent], depth + 1))
-    
+
+    print('*****************************************')
     for index, generation in enumerate(names):
         thisLine = "Generation " + str(totalDepth - index) + ":"
         for index2, name in enumerate(generation):
@@ -328,6 +329,8 @@ def show_ancestors():
             if index2 < len(generation) - 1:
                 thisLine += ","
         print(thisLine)
+    print('*****************************************')
+    print()
 
 
 def show_descendants():
