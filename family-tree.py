@@ -4,7 +4,7 @@ import subprocess
 
 excel_path = r"C:\Program Files\Microsoft Office\root\Office16\EXCEL.EXE"
 file_path = r"C:\Users\ASHil\PycharmProjects\Family-Tree\family-tree-data.xlsx"
-# test
+
 
 class Person:
     def __init__(self, first_name, last_name, class_year, parse_id, parent_1=None, parent_2=None, parent_3=None, child_1=None, child_2=None, child_3=None, child_4=None, child_5=None):
@@ -171,7 +171,7 @@ def path_selection():
             break
 
 
-def data():
+def data_menu():
     print('***************** Data ******************')
     while True:
         global people
@@ -221,7 +221,7 @@ def data():
             print()
 
 
-def search():
+def search_menu():
     print('**************** Search *****************')
     while True:
         print('Select search criterion:')
@@ -287,14 +287,14 @@ def main():
         print()
 
         if selected == '1':
-            search()
+            search_menu()
 
         elif selected == '2':
             show_children()
             print()
 
         elif selected == '8':
-            data()
+            data_menu()
 
         elif selected == '9':
             exit()
