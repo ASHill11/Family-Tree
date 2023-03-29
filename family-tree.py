@@ -276,24 +276,22 @@ def credits_menu():
     print()
 
 
-def show_immediate():
+def show_relationships():
     subject = int(input('Enter person ID: '))
     print()
     subject = person_id_dict[subject]
 
-    print(f'{subject.first_name}\'s buffo:')
+    tense = 'old man' if len(subject.parents) == 1 else 'old men'
+    print(f'{subject.first_name} {subject.last_name}\'s {tense}:')
+    for parent in subject.parents:
+        if parent:
+            print(person_name_dict[parent])
+
+    print(f'\n{subject.first_name} {subject.last_name}\'s buffo:')
     for child in subject.children:
         if child:
             print(person_name_dict[child])
 
-    print()
-    print(f'{subject.first_name} {subject.last_name}\'s Old Men:')
-    if subject.parent_1:
-        print(person_name_dict[subject.parent_1])
-    if subject.parent_2:
-        print(person_name_dict[subject.parent_2])
-    if subject.parent_3:
-        print(person_name_dict[subject.parent_3])
     print()
 
 
@@ -320,6 +318,8 @@ def main():
 
         elif selected == '7':
             data_menu()
+            show_relationships()
+            print()
 
         elif selected == '8':
             credits_menu()
