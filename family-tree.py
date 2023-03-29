@@ -251,20 +251,23 @@ def relationships_menu():
     while True:
         print('Select action:')
         print('[1] Immediate family')
+        print('[2] Show all descendants')
+        print('[3] Show all ancestors')
         print('[9] Go back')
 
         selected = input('Input choice: ')
 
-        if selected == '1':
-            show_relationships()
-
-        elif selected == '9':
-            print('*****************************************')
-            print()
-            break
-
-        else:
-            print()
+        match selected:
+            case '1':
+                show_relationships()
+            case '2':
+                show_descendants()
+            case '3':
+                show_ancestors()
+            case '9':
+                print('*****************************************')
+                print()
+                break
 
 
 def credits_menu():
@@ -276,6 +279,89 @@ def credits_menu():
     print('*****************************************')
     print()
 
+def show_ancestors():
+    subject = int(input('Enter person ID: '))
+    maxDepth = input('How many generations of descendants? ')
+    print()
+
+    subject = person_id_dict[subject]
+    future_nodes = [(subject, 0)]
+    depth = 0
+    totalDepth = 0
+
+    names = []
+
+    while len(future_nodes) > 0:
+        # take the first element from the list of future nodes
+        this_person, depth = future_nodes.pop(0)
+
+        # print the person's name
+        # print(this_person.first_name, this_person.last_name)
+        name = this_person.first_name + ' ' + this_person.last_name
+        if len(names) > depth:
+            names[depth].append(name)
+        else:
+            names.append([name])
+
+        # update total depth
+        totalDepth = max(depth, totalDepth)
+
+        # break if max depth reached
+        if maxDepth:
+            if depth > int(maxDepth): break
+
+        # add person's descendants
+        for parent in this_person.parents:
+            if (parent, depth + 1) not in future_nodes:
+                future_nodes.append((person_id_dict[parent], depth + 1))
+    
+    for index, generation in enumerate(names):
+        thisLine = "Generation " + str(totalDepth - index) + ":"
+        for index2, name in enumerate(generation):
+            thisLine += " " + name
+            if index2 < len(generation) - 1:
+                thisLine += ","
+        print(thisLine)
+
+def show_descendants():
+    subject = int(input('Enter person ID: '))
+    maxDepth = input('How many generations of descendants? ')
+    print()
+
+    subject = person_id_dict[subject]
+    future_nodes = [(subject, 0)]
+    depth = 0
+
+    names = []
+
+    while len(future_nodes) > 0:
+        # take the first element from the list of future nodes
+        this_person, depth = future_nodes.pop(0)
+
+        # print the person's name
+        # print(this_person.first_name, this_person.last_name)
+        name = this_person.first_name + ' ' + this_person.last_name
+        if len(names) > depth:
+            names[depth].append(name)
+        else:
+            names.append([name])
+
+        # break if max depth reached
+        if maxDepth:
+            if depth > int(maxDepth): break
+
+        # add person's descendants
+        for child in this_person.children:
+            if (child, depth + 1) not in future_nodes:
+                future_nodes.append((person_id_dict[child], depth + 1))
+    
+    for index, generation in enumerate(names):
+        thisLine = "Generation " + str(index) + ":"
+        for index2, name in enumerate(generation):
+            thisLine += " " + name
+            if index2 < len(generation) - 1:
+                thisLine += ","
+        print(thisLine)
 
 def show_relationships():
     print()
