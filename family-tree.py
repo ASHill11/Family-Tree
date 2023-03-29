@@ -7,19 +7,13 @@ file_path = r"C:\Users\ASHil\PycharmProjects\Family-Tree\family-tree-data.xlsx"
 
 
 class Person:
-    def __init__(self, first_name, last_name, class_year, parse_id, parent_1=None, parent_2=None, parent_3=None, child_1=None, child_2=None, child_3=None, child_4=None, child_5=None):
+    def __init__(self, first_name, last_name, class_year, parse_id, parents=[], children=[]):
         self.parse_id = parse_id
         self.first_name = first_name
         self.last_name = last_name
         self.class_year = class_year
-        self.parent_1 = parent_1
-        self.parent_2 = parent_2
-        self.parent_3 = parent_3
-        self.child_1 = child_1
-        self.child_2 = child_2
-        self.child_3 = child_3
-        self.child_4 = child_4
-        self.child_5 = child_5
+        self.parents = parents
+        self.children = children
 
 
 def read_excel_data(filename):
@@ -42,16 +36,15 @@ def read_excel_data(filename):
         first_name = worksheet.cell(row=row_num, column=2).value
         last_name = worksheet.cell(row=row_num, column=3).value
         class_year = worksheet.cell(row=row_num, column=4).value
-        parent_1 = worksheet.cell(row=row_num, column=5).value
-        parent_2 = worksheet.cell(row=row_num, column=6).value
-        parent_3 = worksheet.cell(row=row_num, column=7).value
-        child_1 = worksheet.cell(row=row_num, column=8).value
-        child_2 = worksheet.cell(row=row_num, column=9).value
-        child_3 = worksheet.cell(row=row_num, column=10).value
-        child_4 = worksheet.cell(row=row_num, column=11).value
-        child_5 = worksheet.cell(row=row_num, column=12).value
-        person = Person(id_num, first_name, last_name, class_year, parent_1, parent_2, parent_3, child_1, child_2,
-                        child_3, child_4, child_5)
+        parents = []
+        for i in [5, 6, 7]:
+            if worksheet.cell(row=row_num, column=i).value != None:
+                parents.append(worksheet.cell(row=row_num, column=i).value)
+        children = []
+        for i in [8, 9, 10, 11, 12]:
+            if worksheet.cell(row=row_num, column=i).value != None:
+                children.append(worksheet.cell(row=row_num, column=i).value)
+        person = Person(id_num, first_name, last_name, class_year, parents, children)
 
         # Add the Person object to the list
         people_list.append(person)
@@ -89,8 +82,7 @@ person_id_dict = create_person_id_dict()
 
 
 def show_kids(person):
-    kids = [person.child_1, person.child_2, person.child_3, person.child_4, person.child_5]
-    for child in kids:
+    for child in person.children:
         print(child)
 
 
@@ -263,7 +255,7 @@ def relationships_menu():
         selected = input('Input choice: ')
 
         if selected == '1':
-            show_immediate()
+            show_relationships()
 
         elif selected == '9':
             print('*****************************************')
@@ -284,31 +276,22 @@ def credits_menu():
     print()
 
 
-def show_immediate():
+def show_relationships():
     subject = int(input('Enter person ID: '))
     print()
     subject = person_id_dict[subject]
 
-    print(f'{subject.first_name} {subject.last_name}\'s buffo:')
-    if subject.child_1:
-        print(person_name_dict[subject.child_1])
-    if subject.child_2:
-        print(person_name_dict[subject.child_2])
-    if subject.child_3:
-        print(person_name_dict[subject.child_3])
-    if subject.child_4:
-        print(person_name_dict[subject.child_4])
-    if subject.child_5:
-        print(person_name_dict[subject.child_5])
+    tense = 'old man' if len(subject.parents) == 1 else 'old men'
+    print(f'{subject.first_name} {subject.last_name}\'s {tense}:')
+    for parent in subject.parents:
+        if parent:
+            print(person_name_dict[parent])
 
-    print()
-    print(f'{subject.first_name} {subject.last_name}\'s Old Men:')
-    if subject.parent_1:
-        print(person_name_dict[subject.parent_1])
-    if subject.parent_2:
-        print(person_name_dict[subject.parent_2])
-    if subject.parent_3:
-        print(person_name_dict[subject.parent_3])
+    print(f'\n{subject.first_name} {subject.last_name}\'s buffo:')
+    for child in subject.children:
+        if child:
+            print(person_name_dict[child])
+
     print()
 
 
