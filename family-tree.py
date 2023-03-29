@@ -253,6 +253,12 @@ def search_menu():
             print()
 
 
+def relationships_menu():
+    print('************* Relationships *************')
+    while True:
+        pass
+
+
 def credits_menu():
     print('**************** Credits ****************')
     print('Historians: \t Tanner Hansard \'23 and Chris Huser \'22'.expandtabs(10))
@@ -300,8 +306,7 @@ def main():
             search_menu()
 
         elif selected == '2':
-            show_children()
-            print()
+            relationships_menu()
 
         elif selected == '7':
             data_menu()
