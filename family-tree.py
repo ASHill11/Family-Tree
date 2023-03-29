@@ -86,7 +86,6 @@ def create_person_id_dict():
 
 
 person_id_dict = create_person_id_dict()
-print(person_id_dict)
 
 
 def show_kids(person):
