@@ -280,7 +280,8 @@ def main():
         print('*************** Main Menu ***************')
         print('[1] Search')
         print('[2] Relationships')
-        print('[8] Data')
+        print('[7] Data')
+        print('[8] Credits')
         print('[9] Exit')
         selected = input('Input choice: ')
         print()
@@ -292,8 +293,14 @@ def main():
             show_children()
             print()
 
-        elif selected == '8':
+        elif selected == '7':
             data_menu()
+
+        elif selected == '8':
+            print('Historians: Tanner Hansard \'23 and Chris Huser \'22')
+            print('Traditions Chairs: Owen Dunston \'23, Aidan Hill \'23, and Liam Stevens \'23')
+            print('Vice President: Miles Baker \'23')
+            print('Comp Sci Major: Joshua Wood \'23')
 
         elif selected == '9':
             exit()
