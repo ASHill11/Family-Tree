@@ -255,7 +255,7 @@ def relationships_menu():
         selected = input('Input choice: ')
 
         if selected == '1':
-            show_immediate()
+            show_relationships()
 
         elif selected == '9':
             print('*****************************************')
