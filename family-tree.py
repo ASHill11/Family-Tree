@@ -82,8 +82,7 @@ person_id_dict = create_person_id_dict()
 
 
 def show_kids(person):
-    kids = [person.child_1, person.child_2, person.child_3, person.child_4, person.child_5]
-    for child in kids:
+    for child in person.children:
         print(child)
 
 
@@ -282,17 +281,10 @@ def show_immediate():
     print()
     subject = person_id_dict[subject]
 
-    print(f'{subject.first_name} {subject.last_name}\'s buffo:')
-    if subject.child_1:
-        print(person_name_dict[subject.child_1])
-    if subject.child_2:
-        print(person_name_dict[subject.child_2])
-    if subject.child_3:
-        print(person_name_dict[subject.child_3])
-    if subject.child_4:
-        print(person_name_dict[subject.child_4])
-    if subject.child_5:
-        print(person_name_dict[subject.child_5])
+    print(f'{subject.first_name}\'s buffo:')
+    for child in subject.children:
+        if child:
+            print(person_name_dict[child])
 
     print()
     print(f'{subject.first_name} {subject.last_name}\'s Old Men:')
