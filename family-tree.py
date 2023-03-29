@@ -256,7 +256,22 @@ def search_menu():
 def relationships_menu():
     print('************* Relationships *************')
     while True:
-        pass
+        print('Select action:')
+        print('[1] Immediate family')
+        print('[9] Go back')
+
+        selected = input('Input choice: ')
+
+        if selected == '1':
+            show_immediate()
+
+        elif selected == '9':
+            print('*****************************************')
+            print()
+            break
+
+        else:
+            print()
 
 
 def credits_menu():
@@ -269,7 +284,7 @@ def credits_menu():
     print()
 
 
-def show_children():
+def show_immediate():
     subject = int(input('Enter person ID: '))
     print()
     subject = person_id_dict[subject]
