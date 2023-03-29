@@ -253,6 +253,16 @@ def search_menu():
             print()
 
 
+def credits_menu():
+    print('**************** Credits ****************')
+    print('Historians: \t Tanner Hansard \'23 and Chris Huser \'22'.expandtabs(10))
+    print('Traditions Chairs: \t Owen Dunston \'23, Aidan Hill \'23, and Liam Stevens \'23'.expandtabs(10))
+    print('Vice President: \t Miles Baker \'23'.expandtabs(10))
+    print('Comp Sci Major: \t Joshua Wood \'23'.expandtabs(10))
+    print('*****************************************')
+    print()
+
+
 def show_children():
     subject = int(input('Enter person ID: '))
     print()
@@ -297,10 +307,7 @@ def main():
             data_menu()
 
         elif selected == '8':
-            print('Historians: \t Tanner Hansard \'23 and Chris Huser \'22'.expandtabs(10))
-            print('Traditions Chairs: \t Owen Dunston \'23, Aidan Hill \'23, and Liam Stevens \'23'.expandtabs(10))
-            print('Vice President: \t Miles Baker \'23'.expandtabs(10))
-            print('Comp Sci Major: \t Joshua Wood \'23'.expandtabs(10))
+            credits_menu()
 
         elif selected == '9':
             exit()
