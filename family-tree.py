@@ -32,17 +32,18 @@ def read_excel_data(filename):
     while worksheet.cell(row=row_num, column=1).value is not None:
         # Get the data from the row and create a Person object
         id_num = worksheet.cell(row=row_num, column=1).value
-        id_num.zfill(4)
         first_name = worksheet.cell(row=row_num, column=2).value
         last_name = worksheet.cell(row=row_num, column=3).value
         class_year = worksheet.cell(row=row_num, column=4).value
+
         parents = []
         for i in [5, 6, 7]:
-            if worksheet.cell(row=row_num, column=i).value != None:
+            if worksheet.cell(row=row_num, column=i).value:
                 parents.append(worksheet.cell(row=row_num, column=i).value)
+
         children = []
         for i in [8, 9, 10, 11, 12]:
-            if worksheet.cell(row=row_num, column=i).value != None:
+            if worksheet.cell(row=row_num, column=i).value:
                 children.append(worksheet.cell(row=row_num, column=i).value)
         person = Person(id_num, first_name, last_name, class_year, parents, children)
 
@@ -277,6 +278,7 @@ def credits_menu():
 
 
 def show_relationships():
+    print()
     subject = int(input('Enter person ID: '))
     print()
     subject = person_id_dict[subject]
