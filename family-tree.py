@@ -107,6 +107,7 @@ def get_person_by_id(person_id):
 
 def get_person_by_last(person_last):
     people_list = []
+
     for person in people:
         if person.last_name == person_last:
             print(f"Parse ID for {person.first_name} {person.last_name}: {person.parse_id}")
@@ -121,6 +122,7 @@ def get_person_by_last(person_last):
 def get_person_by_year(person_year):
     people_list = []
     person_year = int(person_year)
+
     for person in people:
         if person.class_year == person_year:
             print(f"{person.first_name} {person.last_name}")
@@ -134,6 +136,7 @@ def get_person_by_year(person_year):
 
 def path_selection():
     global file_path, excel_path
+
     while True:
         print()
         print('Enter the path to either your EXCEL.EXE or the family-tree-data.xlsx')
@@ -145,22 +148,23 @@ def path_selection():
         selected = input('[1] Set path for EXCEL.EXE \n[2] Set path for family-tree-data.xlsx '
                          '\n[3] Change input \n[9] Go back \nInput choice: ')
 
-        if selected == '1':
-            excel_path = raw_path
-            print()
-            break
+        match selected:
+            case'1':
+                excel_path = raw_path
+                print()
+                break
 
-        elif selected == '2':
-            file_path = raw_path
-            print()
-            break
+            case '2':
+                file_path = raw_path
+                print()
+                break
 
-        elif selected == '3':
-            print()
+            case '3':
+                print()
 
-        elif selected == '9':
-            print()
-            break
+            case '9':
+                print()
+                break
 
 
 def data_menu():
@@ -177,40 +181,41 @@ def data_menu():
         print('[9] Go back')
         selected = input('Input choice: ')
 
-        if selected == '1':
-            print()
-            print_table()
-            print()
-
-        elif selected == '2':
-            try:
-                subprocess.Popen([excel_path, file_path])
-                print('For changes to take effect you MUST close Excel AND then re-parse the data')
+        match selected:
+            case '1':
                 print()
-            except Exception:
-                print('Error, verify correct paths')
+                print_table()
                 print()
 
-        elif selected == '3':
-            people = read_excel_data('family-tree-data.xlsx')
-            print()
+            case '2':
+                try:
+                    subprocess.Popen([excel_path, file_path])
+                    print('For changes to take effect you MUST close Excel AND then re-parse the data')
+                    print()
+                except Exception:
+                    print('Error, verify correct paths')
+                    print()
 
-        elif selected == '4':
-            path_selection()
+            case '3':
+                people = read_excel_data('family-tree-data.xlsx')
+                print()
 
-        elif selected == '5':
-            print()
-            print(f'Path to EXCEL.EXE: {excel_path}')
-            print(f'Path to family-tree-data.xlsx: {file_path:}')
-            print()
+            case '4':
+                path_selection()
 
-        elif selected == '9':
-            print('*****************************************')
-            print()
-            break
+            case '5':
+                print()
+                print(f'Path to EXCEL.EXE: {excel_path}')
+                print(f'Path to family-tree-data.xlsx: {file_path:}')
+                print()
 
-        else:
-            print()
+            case '9':
+                print('*****************************************')
+                print()
+                break
+
+            case '':
+                print()
 
 
 def search_menu():
@@ -223,27 +228,28 @@ def search_menu():
         print('[9] Go back')
         selected = input('Input choice: ')
 
-        if selected == '1':
-            print()
-            get_person_by_id(input('Enter ID: '))
+        match selected:
+            case '1':
+                print()
+                get_person_by_id(input('Enter ID: '))
 
-        elif selected == '2':
-            print()
-            get_person_by_last(input('Enter last name: '))
-            print()
+            case '2':
+                print()
+                get_person_by_last(input('Enter last name: '))
+                print()
 
-        elif selected == '3':
-            print()
-            get_person_by_year(input('Enter class year: '))
-            print()
+            case '3':
+                print()
+                get_person_by_year(input('Enter class year: '))
+                print()
 
-        elif selected == '9':
-            print('*****************************************')
-            print()
-            break
+            case '9':
+                print('*****************************************')
+                print()
+                break
 
-        else:
-            print()
+            case '':
+                print()
 
 
 def relationships_menu():
@@ -398,20 +404,21 @@ def main():
         selected = input('Input choice: ')
         print()
 
-        if selected == '1':
-            search_menu()
+        match selected:
+            case '1':
+                search_menu()
 
-        elif selected == '2':
-            relationships_menu()
+            case '2':
+                relationships_menu()
 
-        elif selected == '7':
-            data_menu()
+            case '7':
+                data_menu()
 
-        elif selected == '8':
-            credits_menu()
+            case '8':
+                credits_menu()
 
-        elif selected == '9':
-            exit()
+            case '9':
+                exit()
 
 
 main()
