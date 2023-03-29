@@ -4,7 +4,6 @@ import subprocess
 
 excel_path = r"C:\Program Files\Microsoft Office\root\Office16\EXCEL.EXE"
 file_path = r"C:\Users\ASHil\PycharmProjects\Family-Tree\family-tree-data.xlsx"
-# test
 
 
 class Person:
