@@ -253,6 +253,7 @@ def search_menu():
 
             case '':
                 print()
+        print()
 
 
 def relationships_menu():
