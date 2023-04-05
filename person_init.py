@@ -24,7 +24,7 @@ def read_excel_data(filename):
 
     # Loop through each row in the worksheet until an empty row is reached
     row_num = 2  # start at row 2 to skip the header row
-    while worksheet.cell(row=row_num, column=1).value is not None:
+    while worksheet.cell(row=row_num, column=2).value is not None:
         # Get the data from the row and create a Person object
         id_num = worksheet.cell(row=row_num, column=1).value
         first_name = worksheet.cell(row=row_num, column=2).value
@@ -60,7 +60,7 @@ def create_name_dict(people):
         if person.class_year is not None:
             class_year = str(int(str(person.class_year).replace('?', '')) % 100)
             class_year = ' \'' + '0' * (2 - len(class_year)) + class_year
-        full_name = person.first_name + ' ' + person.last_name + class_year
+        full_name = (person.first_name or "") + ' ' + person.last_name + class_year
         name_dict[person.parse_id] = full_name
     return name_dict
 
