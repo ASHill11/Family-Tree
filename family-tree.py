@@ -126,7 +126,8 @@ def data_menu():
                     print()
 
             case '3':
-                people = read_excel_data('family-tree-data.xlsx')
+                clear_db_people()
+                people, person_name_dict, person_id_dict = initialize_people()
                 print()
 
             case '4':

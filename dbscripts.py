@@ -38,6 +38,16 @@ def add_people_to_db(conn, people):
     else:
         print("Error: database connection does not exist.")
 
+def clear_db_people():
+    conn = create_connection()
+    if conn is not None:
+        c = conn.cursor()
+        c.execute("DROP TABLE person;")
+        conn.commit()
+        conn.close()
+    else:
+        print("Error: database connection does not exist.")
+
 def get_people_from_db(conn):
     people = []
     if conn is not None:
