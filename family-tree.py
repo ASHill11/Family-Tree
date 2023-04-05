@@ -362,7 +362,9 @@ def show_descendants():
     print()
 
     print('*****************************************')
-    rl = create_rec_list(person_id_dict[subject], "DOWN", 0, (int(maxDepth) if maxDepth else 1000))
+    subject = person_id_dict[subject]
+    print("Showing descendants for", subject.first_name + ' ' + subject.last_name)
+    rl = create_rec_list(subject, "DOWN", 0, (int(maxDepth) if maxDepth else 1000))
     print_nested_list(rl, 15)
     print('*****************************************')
 
