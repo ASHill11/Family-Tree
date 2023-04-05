@@ -5,12 +5,11 @@ from person_init import * # all functions relating to the Person object
 
 excel_path = r"C:\Program Files\Microsoft Office\root\Office16\EXCEL.EXE"
 file_path = r"C:\Users\ASHil\PycharmProjects\Family-Tree\family-tree-data.xlsx"
+people = []
+person_name_dict = {}
+person_id_dict = {}
 
-
-people = read_excel_data('family-tree-data.xlsx')
-
-
-def create_name_dict():
+def create_name_dict(people):
     name_dict = {}
     for person in people:
         full_name = person.first_name + ' ' + person.last_name
@@ -18,17 +17,11 @@ def create_name_dict():
     return name_dict
 
 
-person_name_dict = create_name_dict()
-
-
-def create_person_id_dict():
+def create_person_id_dict(people):
     id_person_dict = {}
     for person in people:
         id_person_dict[person.parse_id] = person
     return id_person_dict
-
-
-person_id_dict = create_person_id_dict()
 
 
 def show_kids(person):
@@ -347,7 +340,6 @@ def show_relationships():
 
 
 def main():
-
     print('Welcome to the Singing Cadet family tree project! Here you can lookup any recorded member to see their '
           'family tree!')
     print('Github Repo: https://github.com/ASHill11/Family-Tree')
@@ -379,4 +371,7 @@ def main():
                 exit()
 
 
+people = read_excel_data('family-tree-data.xlsx')
+person_name_dict = create_name_dict(people)
+person_id_dict = create_person_id_dict(people)
 main()

@@ -1,3 +1,5 @@
+import openpyxl
+
 class Person:
     def __init__(self, first_name, last_name, class_year, parse_id, parents=[], children=[]):
         self.parse_id = parse_id
