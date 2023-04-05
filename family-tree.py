@@ -28,8 +28,7 @@ def get_person_by_id(person_id):
         person_id = int(person_id)
         for person in people:
             if person.parse_id == person_id:
-                print(person.first_name, person.last_name)
-                print()
+                print(person.first_name, person.last_name, 'class of', person.class_year)
                 return person
     print("No person found with ID:", person_id)
     print()
@@ -181,8 +180,9 @@ def search_menu():
 
             case '3':
                 print()
+                print('*****************************************')
                 get_person_by_year(input('Enter class year: '))
-                print()
+                print('*****************************************')
 
             case '9':
                 print('*****************************************')
