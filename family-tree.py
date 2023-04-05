@@ -356,8 +356,5 @@ def main():
             case '9':
                 exit()
 
-
-people = read_excel_data('family-tree-data.xlsx')
-person_name_dict = create_name_dict(people)
-person_id_dict = create_person_id_dict(people)
+people, person_name_dict, person_id_dict = initialize_people()
 main()

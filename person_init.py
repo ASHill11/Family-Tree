@@ -1,4 +1,5 @@
 import openpyxl
+import dbscripts
 
 class Person:
     def __init__(self, first_name, last_name, class_year, parse_id, parents=[], children=[]):
@@ -65,3 +66,16 @@ def create_person_id_dict(people):
     for person in people:
         id_person_dict[person.parse_id] = person
     return id_person_dict
+
+def initialize_people():
+    dbconn = dbscripts.create_connection()
+    people = []
+    dbscripts.get_people_from_db(dbconn, people)
+    if len(people) == 0:
+        print("Database empty. Populating database from excel file.")
+        people = read_excel_data('family-tree-data.xlsx')
+        dbscripts.create_person_table(dbconn)
+        dbscripts.add_people_to_db(dbconn, people)
+    person_name_dict = create_name_dict(people)
+    person_id_dict = create_person_id_dict(people)
+    return (people, person_name_dict, person_id_dict)
