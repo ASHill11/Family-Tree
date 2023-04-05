@@ -22,13 +22,15 @@ def print_table():
 
 
 def get_person_by_id(person_id):
-    person_id = int(person_id)
-
-    name = person_name_dict[person_id]
-    if name:
-        print(name)
-        print()
-        return name
+    if person_id == '':
+        pass
+    else:
+        person_id = int(person_id)
+        for person in people:
+            if person.parse_id == person_id:
+                print(person.first_name, person.last_name)
+                print()
+                return person
     print("No person found with ID:", person_id)
     print()
     return None
@@ -165,8 +167,15 @@ def search_menu():
 
             case '2':
                 print()
-                get_person_by_last(input('Enter last name: '))
-                print()
+                print('Enter 9 to go back')
+                print('NOTE: Input is case sensitive')
+                while True:
+                    get = input('Enter last name: ')
+                    if get == '9':
+                        break
+                    else:
+                        get_person_by_last(get)
+                        print()
 
             case '3':
                 print()
@@ -180,6 +189,7 @@ def search_menu():
 
             case '':
                 print()
+        print()
 
 
 def relationships_menu():
