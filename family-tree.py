@@ -239,7 +239,6 @@ def search_menu():
             case '2':
                 print()
                 get_person_by_last(input('Enter last name: '))
-                print()
 
             case '3':
                 print()
