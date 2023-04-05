@@ -44,7 +44,6 @@ def get_people_from_db(conn):
         c = conn.cursor()
         c.execute("SELECT * FROM person;")
         person_table = c.fetchall()
-        print(f"Getting {len(person_table)} person entries")
         for person_info in person_table:
             parse_id, first_name, last_name, class_year, parents, children = person_info
             person = Person(first_name, last_name, class_year, parse_id, parents, children)

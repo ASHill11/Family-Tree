@@ -76,5 +76,5 @@ def initialize_people():
         dbscripts.add_people_to_db(dbconn, people)
     person_name_dict = create_name_dict(people)
     person_id_dict = create_person_id_dict(people)
-    dbconn.close()
+    if dbconn is not None: dbconn.close()
     return (people, person_name_dict, person_id_dict)
