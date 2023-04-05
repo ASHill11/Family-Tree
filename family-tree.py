@@ -258,17 +258,17 @@ def print_nested_list(nested_list, output_length):
 
             # print element
             last_in_list = is_last_in_list(place, parent_list_length)
-            thisLine = ""
+            pipes = ""
             for ancestor in ancestors[0:len(ancestors)-1]:
                 if ancestor:
-                    thisLine += PIPE
+                    pipes += PIPE
                 else:
-                    thisLine += SPACE
+                    pipes += SPACE
             # isCorner = last_in_list
             isCorner = True # always print elbows
-            thisLine += (ELBOW if isCorner else TEE) + str(element)
+            thisLine = pipes + (ELBOW if isCorner else TEE) + str(element)
+            print(pipes + PIPE)
             print(thisLine)
-            
 
             while last_in_list:
                 # if at the end of the parent list, then remove the last element
@@ -310,7 +310,7 @@ def show_ancestors():
     subject = person_id_dict[subject]
     print("Showing ancestors for", subject.first_name + ' ' + subject.last_name)
     rl = create_rec_list(subject, "UP", 0, (int(maxDepth) if maxDepth else 1000))
-    print_nested_list(rl, 15)
+    print_nested_list(rl, 5)
     print('*****************************************')
     print()
 
@@ -365,7 +365,7 @@ def show_descendants():
     subject = person_id_dict[subject]
     print("Showing descendants for", subject.first_name + ' ' + subject.last_name)
     rl = create_rec_list(subject, "DOWN", 0, (int(maxDepth) if maxDepth else 1000))
-    print_nested_list(rl, 15)
+    print_nested_list(rl, 5)
     print('*****************************************')
 
 
