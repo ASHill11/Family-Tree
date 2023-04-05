@@ -303,56 +303,12 @@ def show_ancestors():
     maxDepth = input('How many generations of ancestors? ')
     print()
 
-    # print recursive list like in show descendants
-    # this code shows parents as children in the tree
-    # major problem with this is that the tree format we are using does not support having multiple parents
-    print('*****************************************')
     subject = person_id_dict[subject]
     print("Showing ancestors for", subject.first_name + ' ' + subject.last_name)
     rl = create_rec_list(subject, "UP", 0, (int(maxDepth) if maxDepth else 1000))
     print_nested_list(rl, 5)
     print('*****************************************')
     print()
-
-    # subject = person_id_dict[subject]
-    # future_nodes = [(subject, 0)]
-    # totalDepth = 0
-    # names = []
-
-    # while len(future_nodes) > 0:
-    #     # take the first element from the list of future nodes
-    #     this_person, depth = future_nodes.pop(0)
-
-    #     # print the person's name
-    #     name = this_person.first_name + ' ' + this_person.last_name
-    #     if len(names) > depth:
-    #         names[depth].append(name)
-    #     else:
-    #         names.append([name])
-
-    #     # update total depth
-    #     totalDepth = max(depth, totalDepth)
-
-    #     # break if max depth reached
-    #     if maxDepth:
-    #         if depth > int(maxDepth): break
-
-    #     # add person's descendants
-    #     for parent in this_person.parents:
-    #         if (parent, depth + 1) not in future_nodes:
-    #             future_nodes.append((person_id_dict[parent], depth + 1))
-
-    # print('*****************************************')
-    # print("Showing ancestors for", subject.first_name + ' ' + subject.last_name)
-    # for index, generation in enumerate(names):
-    #     thisLine = "Generation " + str(-index or ' 0') + ":"
-    #     for index2, name in enumerate(generation):
-    #         thisLine += " " + name
-    #         if index2 < len(generation) - 1:
-    #             thisLine += "\t\t"
-    #     print(thisLine)
-    # print('*****************************************')
-    # print()
 
 
 def show_descendants():
@@ -367,6 +323,7 @@ def show_descendants():
     rl = create_rec_list(subject, "DOWN", 0, (int(maxDepth) if maxDepth else 1000))
     print_nested_list(rl, 5)
     print('*****************************************')
+    print()
 
 
 def show_relationships():
