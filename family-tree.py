@@ -216,6 +216,44 @@ def credits_menu():
     print()
 
 
+def print_nested_list(nested_list, naming_func):
+    length = 3
+    PIPE = " │" + ' ' * (length - 2)
+    ELBOW = " └─" + '─' * (length - 2)
+    TEE = " ├─" + '─' * (length - 2)
+    place = []
+    keepGoing = True
+    try:
+        while keepGoing:
+            element = nested_list
+            parent_list_length = -1
+            for index in place:
+                if index >= len(element): raise StopIteration
+                element = element[index]
+                if isinstance(element, list): parent_list_length = len(element)
+            while isinstance(element, list):
+                element = element[0]
+                place.append(0)
+                if isinstance(element, list): parent_list_length = len(element)
+
+            last_in_list = place[len(place)-1] >= parent_list_length - 1
+            # print element
+            depth = len(place) - 2 if place[len(place)-1] == 0 else len(place) - 1
+            print(PIPE * depth + (ELBOW if last_in_list else TEE) + naming_func(element))
+
+            if last_in_list:
+                # if at the end of the deepest nested list, then remove the last element
+                place.pop(len(place)-1)
+                if not place:
+                    keepGoing = False
+                    continue
+
+            # increment the new last element by one
+            place[len(place)-1] += 1
+    except StopIteration:
+        pass
+
+
 def show_ancestors():
     print()
     subject = int(input('Enter person ID: '))
