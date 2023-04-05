@@ -167,11 +167,13 @@ def search_menu():
 
             case '2':
                 print()
+                print('*****************************************')
                 print('Enter 9 to go back')
                 print('NOTE: Input is case sensitive')
                 while True:
                     get = input('Enter last name: ')
                     if get == '9':
+                        print('*****************************************')
                         break
                     else:
                         get_person_by_last(get)
