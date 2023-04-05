@@ -56,9 +56,11 @@ def read_excel_data(filename):
 def create_name_dict(people):
     name_dict = {}
     for person in people:
-        class_year = str(person.class_year % 100)
-        class_year = '0' * (2 - len(class_year)) + class_year
-        full_name = person.first_name + ' ' + person.last_name + ' \'' + class_year
+        class_year = ''
+        if person.class_year is not None:
+            class_year = str(int(str(person.class_year).replace('?', '')) % 100)
+            class_year = ' \'' + '0' * (2 - len(class_year)) + class_year
+        full_name = person.first_name + ' ' + person.last_name + class_year
         name_dict[person.parse_id] = full_name
     return name_dict
 
@@ -71,7 +73,8 @@ def create_person_id_dict(people):
 
 def initialize_people():
     dbconn = dbscripts.create_connection()
-    people = dbscripts.get_people_from_db(dbconn)
+    # people = dbscripts.get_people_from_db(dbconn)
+    people = [] # comment this out and uncomment the previous line to only read the db on startup
     if len(people) == 0:
         print("Populating database from excel file.")
         people = read_excel_data('family-tree-data.xlsx')

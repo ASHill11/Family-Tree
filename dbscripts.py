@@ -29,10 +29,14 @@ def create_connection():
         return None
 
 def add_people_to_db(conn, people):
+    def check_if_none(val):
+        if val is not None:
+            return str(val).replace('?', '')
+        return "NULL"
     if conn is not None:
         c = conn.cursor()
         for person in people:
-            insert_command = (f"INSERT OR REPLACE INTO person VALUES ({person.parse_id}, \"{person.first_name}\", \"{person.last_name}\", {person.class_year}, \"{' '.join(map(str, person.parents))}\", \"{' '.join(map(str, person.children))}\");")
+            insert_command = (f"INSERT OR REPLACE INTO person VALUES ({person.parse_id}, \"{check_if_none(person.first_name)}\", \"{check_if_none(person.last_name)}\", {check_if_none(person.class_year)}, \"{' '.join(map(str, person.parents))}\", \"{' '.join(map(str, person.children))}\");")
             c.execute(insert_command)
         conn.commit()
     else:
