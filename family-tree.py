@@ -214,6 +214,7 @@ def relationships_menu():
                 print('*****************************************')
                 print()
                 break
+        print()
 
 
 def credits_menu():
