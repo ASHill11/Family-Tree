@@ -36,18 +36,28 @@ def get_person_by_id(person_id):
     return None
 
 
-def get_person_by_last(person_last):
+def get_person_by_last():
+    print()
+    print('*****************************************')
+    print('Enter 9 to go back')
+    print('NOTE: Input is case sensitive')
     people_list = []
 
-    for person in people:
-        if person.last_name == person_last:
-            print(f"Parse ID for {person.first_name} {person.last_name}: {person.parse_id}")
-            people_list.append(person)
+    while True:
+        print()
+        get = input('Enter last name: ')
+        if get == '9':
+            print('*****************************************')
+            break
 
-    if not people_list:
-        print("No people found with last name:", person_last)
+        else:
+            for person in people:
+                if person.last_name == get:
+                    print(f"Parse ID for {person.first_name} {person.last_name}: {person.parse_id}")
+                    people_list.append(person)
 
-    return people_list
+            if len(people_list) == 0:
+                print("No people found with last name:", get)
 
 
 def get_person_by_year(person_year):
@@ -166,18 +176,8 @@ def search_menu():
                 get_person_by_id(input('Enter ID: '))
 
             case '2':
+                get_person_by_last()
                 print()
-                print('*****************************************')
-                print('Enter 9 to go back')
-                print('NOTE: Input is case sensitive')
-                while True:
-                    get = input('Enter last name: ')
-                    if get == '9':
-                        print('*****************************************')
-                        break
-                    else:
-                        get_person_by_last(get)
-                        print()
 
             case '3':
                 print()
