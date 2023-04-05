@@ -45,7 +45,9 @@ def get_people_from_db(conn):
         c.execute("SELECT * FROM person;")
         person_table = c.fetchall()
         for person_info in person_table:
-            parse_id, first_name, last_name, class_year, parents, children = person_info
+            parse_id, first_name, last_name, class_year, parents_str, children_str = person_info
+            parents = list(map(int, str(parents_str).split()))
+            children = list(map(int, str(children_str).split()))
             person = Person(first_name, last_name, class_year, parse_id, parents, children)
             people.append(person)
     else:
