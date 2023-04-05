@@ -216,42 +216,75 @@ def credits_menu():
     print()
 
 
-def print_nested_list(nested_list, naming_func):
-    length = 3
-    PIPE = " │" + ' ' * (length - 2)
-    ELBOW = " └─" + '─' * (length - 2)
-    TEE = " ├─" + '─' * (length - 2)
+def print_nested_list(nested_list, output_length):
+    ancestors = []
+    def is_last_in_list(place, parent_list_length):
+        return place[len(place)-1] >= parent_list_length - 1
+    def getEl (place):
+        ancestors.clear()
+        ancestors.append(False)
+        element = nested_list
+        parent_list_length = len(nested_list)
+        for i, index in enumerate(place):
+            if index >= len(element): raise StopIteration
+            if isinstance(element, list): parent_list_length = len(element)
+            element = element[index]
+            ancestors.append(False if is_last_in_list(place[0:i+1], parent_list_length) else True)
+        return(element, parent_list_length)
+        
+    PIPE = " │" + ' ' * (output_length - 2)
+    ELBOW = " └─" + '─' * (output_length - 2)
+    TEE = " ├─" + '─' * (output_length - 2)
+    SPACE = ' ' * (output_length)
     place = []
     keepGoing = True
     try:
         while keepGoing:
-            element = nested_list
-            parent_list_length = -1
-            for index in place:
-                if index >= len(element): raise StopIteration
-                element = element[index]
-                if isinstance(element, list): parent_list_length = len(element)
+            element, parent_list_length = getEl(place)
             while isinstance(element, list):
                 element = element[0]
                 place.append(0)
                 if isinstance(element, list): parent_list_length = len(element)
 
-            last_in_list = place[len(place)-1] >= parent_list_length - 1
             # print element
-            depth = len(place) - 2 if place[len(place)-1] == 0 else len(place) - 1
-            print(PIPE * depth + (ELBOW if last_in_list else TEE) + naming_func(element))
+            last_in_list = is_last_in_list(place, parent_list_length)
+            thisLine = ""
+            for ancestor in ancestors[0:len(ancestors)-1]:
+                if ancestor:
+                    thisLine += PIPE
+                else:
+                    thisLine += SPACE
+            # isCorner = last_in_list
+            isCorner = True # always print elbows
+            thisLine += (ELBOW if isCorner else TEE) + str(element)
+            print(thisLine)
+            
 
-            if last_in_list:
-                # if at the end of the deepest nested list, then remove the last element
+            while last_in_list:
+                # if at the end of the parent list, then remove the last element
                 place.pop(len(place)-1)
                 if not place:
                     keepGoing = False
-                    continue
+                    break
+                element, parent_list_length = getEl(place)
+                last_in_list = is_last_in_list(place, parent_list_length)
 
             # increment the new last element by one
-            place[len(place)-1] += 1
+            if keepGoing and not last_in_list: place[len(place)-1] += 1
     except StopIteration:
+        print("StopIteration exception raised.", place)
         pass
+
+
+def create_rec_list(this_person, direction, depth, maxDepth):
+    nodes = this_person.parents if direction == "UP" else this_person.children
+    if nodes and depth < maxDepth:
+        node_list = [person_name_dict[this_person.parse_id]]
+        for node in nodes:
+            node_list.append(create_rec_list(person_id_dict[node], direction, depth + 1, maxDepth))
+        return node_list
+    else:
+        return person_name_dict[this_person.parse_id]
 
 
 def show_ancestors():
@@ -270,7 +303,6 @@ def show_ancestors():
         this_person, depth = future_nodes.pop(0)
 
         # print the person's name
-        # print(this_person.first_name, this_person.last_name)
         name = this_person.first_name + ' ' + this_person.last_name
         if len(names) > depth:
             names[depth].append(name)
@@ -343,6 +375,12 @@ def show_descendants():
         print(thisLine)
     print('*****************************************')
     print()
+
+
+    # print('*****************************************')
+    # rl = create_rec_list(subject, "DOWN", 0, (int(maxDepth) if maxDepth else 1000))
+    # print_nested_list(rl, 15)
+    # print('*****************************************')
 
 
 def show_relationships():
