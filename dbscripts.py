@@ -1,5 +1,6 @@
 import os
 import sqlite3
+from person_init import * # all functions relating to the Person object
 
 def create_connection():
     # creates a database connection to a SQLite database or creates a new database if it doesn't exist
@@ -40,10 +41,10 @@ def get_people_from_db(conn, people):
         c = conn.cursor()
         c.execute("SELECT * FROM person;")
         person_table = c.fetchall()
-        # for person_info in person_table:
-        #     parse_id, first_name, last_name, class_year, parents, children = person_info
-        #     person = Person(parse_id, first_name, last_name, class_year, parents, children)
-        #     people.append(person)
+        for person_info in person_table:
+            parse_id, first_name, last_name, class_year, parents, children = person_info
+            person = Person(parse_id, first_name, last_name, class_year, parents, children)
+            people.append(person)
 
     else:
         print("Error: database connection does not exist.")

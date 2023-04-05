@@ -9,20 +9,6 @@ people = []
 person_name_dict = {}
 person_id_dict = {}
 
-def create_name_dict(people):
-    name_dict = {}
-    for person in people:
-        full_name = person.first_name + ' ' + person.last_name
-        name_dict[person.parse_id] = full_name
-    return name_dict
-
-
-def create_person_id_dict(people):
-    id_person_dict = {}
-    for person in people:
-        id_person_dict[person.parse_id] = person
-    return id_person_dict
-
 
 def show_kids(person):
     for child in person.children:

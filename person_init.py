@@ -50,3 +50,18 @@ def read_excel_data(filename):
     # Close the workbook and return the list of Person objects
     workbook.close()
     return people_list
+
+
+def create_name_dict(people):
+    name_dict = {}
+    for person in people:
+        full_name = person.first_name + ' ' + person.last_name
+        name_dict[person.parse_id] = full_name
+    return name_dict
+
+
+def create_person_id_dict(people):
+    id_person_dict = {}
+    for person in people:
+        id_person_dict[person.parse_id] = person
+    return id_person_dict
