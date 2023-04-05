@@ -23,11 +23,12 @@ def print_table():
 
 def get_person_by_id(person_id):
     person_id = int(person_id)
-    for person in people:
-        if person.parse_id == person_id:
-            print(person.first_name, person.last_name)
-            print()
-            return person
+
+    name = person_name_dict[person_id]
+    if name:
+        print(name)
+        print()
+        return name
     print("No person found with ID:", person_id)
     print()
     return None
@@ -277,7 +278,7 @@ def show_descendants():
 
         # print the person's name
         # print(this_person.first_name, this_person.last_name)
-        name = this_person.first_name + ' ' + this_person.last_name
+        name = person_name_dict[this_person.parse_id]
         if len(names) > depth:
             names[depth].append(name)
         else:

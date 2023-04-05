@@ -56,7 +56,9 @@ def read_excel_data(filename):
 def create_name_dict(people):
     name_dict = {}
     for person in people:
-        full_name = person.first_name + ' ' + person.last_name
+        class_year = str(person.class_year % 100)
+        class_year = '0' * (2 - len(class_year)) + class_year
+        full_name = person.first_name + ' ' + person.last_name + ' \'' + class_year
         name_dict[person.parse_id] = full_name
     return name_dict
 
@@ -71,7 +73,7 @@ def initialize_people():
     dbconn = dbscripts.create_connection()
     people = dbscripts.get_people_from_db(dbconn)
     if len(people) == 0:
-        print("Database empty. Populating database from excel file.")
+        print("Populating database from excel file.")
         people = read_excel_data('family-tree-data.xlsx')
         dbscripts.add_people_to_db(dbconn, people)
     person_name_dict = create_name_dict(people)
