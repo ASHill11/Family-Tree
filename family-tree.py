@@ -94,12 +94,15 @@ def print_table():
 
 
 def get_person_by_id(person_id):
-    person_id = int(person_id)
-    for person in people:
-        if person.parse_id == person_id:
-            print(person.first_name, person.last_name)
-            print()
-            return person
+    if person_id == '':
+        pass
+    else:
+        person_id = int(person_id)
+        for person in people:
+            if person.parse_id == person_id:
+                print(person.first_name, person.last_name)
+                print()
+                return person
     print("No person found with ID:", person_id)
     print()
     return None
