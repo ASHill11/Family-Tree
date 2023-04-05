@@ -238,6 +238,7 @@ def search_menu():
 
             case '2':
                 print()
+                print('NOTE: Input is case sensitive')
                 get_person_by_last(input('Enter last name: '))
 
             case '3':
