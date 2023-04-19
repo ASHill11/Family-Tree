@@ -1,4 +1,3 @@
-import openpyxl
 import subprocess
 from dbscripts import * # all functions relating to the sqlite3 database
 from person_init import * # all functions relating to the Person object
@@ -231,8 +230,10 @@ def credits_menu():
 
 def print_nested_list(nested_list, output_length):
     ancestors = []
+
     def is_last_in_list(place, parent_list_length):
         return place[len(place)-1] >= parent_list_length - 1
+
     def getEl (place):
         ancestors.clear()
         ancestors.append(False)
@@ -380,5 +381,5 @@ def main():
             case '9':
                 exit()
 
-people, person_name_dict, person_id_dict = initialize_people()
+
 main()
